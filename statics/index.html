@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            const valuesToOmit = ["", "auto","normal", "none"];
+            function parseCSSValue(type, val){
+                const el = document.createElement("div");
+                const assignedVal = val.replaceAll('spx', 'px');
+                el.style[type] = assignedVal;
+                const realResult = {};
+                Object.keys(el.style).forEach(key => {
+                    if(!/\d+/ig.test(key) &&  !valuesToOmit.includes(el.style[key])){
+                        realResult[key] = el.style[key];
+                    }
+                });
+                return realResult;
+            }
+        </script>
+    </head>
+    <body>
+        <select id="type">
+            <option value='alignSelf'>alignSelf</option>
+            <option value='backgroundColor'>backgroundColor</option>
+            <option value='backgroundImage'>backgroundImage</option>
+            <option value='backgroundSize'>backgroundSize</option>
+            <option value='border'>border</option>
+            <option value='borderBottomColor'>borderBottomColor</option>
+            <option value='borderBottomLeftRadius'>borderBottomLeftRadius</option>
+            <option value='borderBottomRightRadius'>borderBottomRightRadius</option>
+            <option value='borderBottomStyle'>borderBottomStyle</option>
+            <option value='borderBottomWidth'>borderBottomWidth</option>
+            <option value='borderColor'>borderColor</option>
+            <option value='borderLeftColor'>borderLeftColor</option>
+            <option value='borderLeftStyle'>borderLeftStyle</option>
+            <option value='borderLeftWidth'>borderLeftWidth</option>
+            <option value='borderRadius'>borderRadius</option>
+            <option value='borderRightColor'>borderRightColor</option>
+            <option value='borderRightStyle'>borderRightStyle</option>
+            <option value='borderRightWidth'>borderRightWidth</option>
+            <option value='borderStyle'>borderStyle</option>
+            <option value='borderTopColor'>borderTopColor</option>
+            <option value='borderTopLeftRadius'>borderTopLeftRadius</option>
+            <option value='borderTopRightRadius'>borderTopRightRadius</option>
+            <option value='borderTopStyle'>borderTopStyle</option>
+            <option value='borderTopWidth'>borderTopWidth</option>
+            <option value='borderWidth'>borderWidth</option>
+            <option value='boxShadow'>boxShadow</option>
+            <option value='color'>color</option>
+            <option value='direction'>direction</option>
+            <option value='font'>font</option>
+            <option value='fontFamily'>fontFamily</option>
+            <option value='fontSize'>fontSize</option>
+            <option value='fontStretch'>fontStretch</option>
+            <option value='fontStyle'>fontStyle</option>
+            <option value='fontVariant'>fontVariant</option>
+            <option value='fontWeight'>fontWeight</option>
+            <option value='justifyContent'>justifyContent</option>
+            <option value='length'>length</option>
+            <option value='letterSpacing'>letterSpacing</option>
+            <option value='lineHeight'>lineHeight</option>
+            <option value='margin'>margin</option>
+            <option value='marginBottom'>marginBottom</option>
+            <option value='marginLeft'>marginLeft</option>
+            <option value='marginRight'>marginRight</option>
+            <option value='marginTop'>marginTop</option>
+            <option value='number'>number</option>
+            <option value='opacity'>opacity</option>
+            <option value='padding'>padding</option>
+            <option value='paddingBottom'>paddingBottom</option>
+            <option value='paddingLeft'>paddingLeft</option>
+            <option value='paddingRight'>paddingRight</option>
+            <option value='paddingTop'>paddingTop</option>
+            <option value='textAlign'>textAlign</option>
+            <option value='textDecoration'>textDecoration</option>
+            <option value='textDecorationColor'>textDecorationColor</option>
+            <option value='textDecorationLine'>textDecorationLine</option>
+            <option value='textDecorationStyle'>textDecorationStyle</option>
+            <option value='textDecorationThickness'>textDecorationThickness</option>
+            <option value='textShadow'>textShadow</option>
+            <option value='textTransform'>textTransform</option>
+        </select>
+        <input id="value"></input>
+        <button>
+            Compute
+        </button>
+        <p id="results"></p>
+        <script>
+            document.getElementsByTagName('button')[0].addEventListener('click', () => {
+                const type = document.getElementById('type').value;
+                const value = document.getElementById('value').value;
+                const res = parseCSSValue(type, value);
+                document.getElementById('results').innerText = JSON.stringify(res, null, 4);            
+            });
+        </script>
+    </body>
+</html>

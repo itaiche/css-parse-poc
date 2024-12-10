@@ -1,0 +1,14 @@
+{
+  "name": "cssparsepoc",
+  "version": "1.0.0",
+  "description": "An attempt to break down complex CSS values as simply as possible",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node index.js"
+  },
+    "author": "itaich@wix.com",
+  "license": "ISC",
+  "dependencies": {
+    "puppeteer": "^23.10.2"
+  }
+}
